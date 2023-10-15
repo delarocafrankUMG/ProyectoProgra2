@@ -1,0 +1,183 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Model.Store" Provider="Oracle.ManagedDataAccess.Client" ProviderManifestToken="11.2" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="COLA_ESTUDIANTES">
+          <Key>
+            <PropertyRef Name="CARNET" />
+          </Key>
+          <Property Name="CARNET" Type="varchar2" MaxLength="20" Nullable="false" />
+          <Property Name="FECHA_ADICION" Type="date" />
+        </EntityType>
+        <EntityType Name="ESTUDIANTES">
+          <Key>
+            <PropertyRef Name="CARNET" />
+          </Key>
+          <Property Name="CARNET" Type="varchar2" MaxLength="20" Nullable="false" />
+          <Property Name="NOMBRE" Type="varchar2" MaxLength="100" />
+          <Property Name="FECHA_NACIMIENTO" Type="date" />
+          <Property Name="FECHA_REGISTRO" Type="date" />
+        </EntityType>
+        <EntityType Name="INSCRIPCION_ESTUDIANTES">
+          <Key>
+            <PropertyRef Name="CARNET" />
+            <PropertyRef Name="FECHA_ADICION" />
+          </Key>
+          <Property Name="CARNET" Type="varchar2" MaxLength="20" Nullable="false" />
+          <Property Name="FECHA_ADICION" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="USUARIOS">
+          <Key>
+            <PropertyRef Name="USUARIO" />
+          </Key>
+          <Property Name="USUARIO" Type="varchar2" MaxLength="20" Nullable="false" />
+          <Property Name="CONTRASENA" Type="varchar2" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_CARNET">
+          <End Role="ESTUDIANTES" Type="Self.ESTUDIANTES" Multiplicity="1" />
+          <End Role="INSCRIPCION_ESTUDIANTES" Type="Self.INSCRIPCION_ESTUDIANTES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ESTUDIANTES">
+              <PropertyRef Name="CARNET" />
+            </Principal>
+            <Dependent Role="INSCRIPCION_ESTUDIANTES">
+              <PropertyRef Name="CARNET" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ModelStoreContainer">
+          <EntitySet Name="COLA_ESTUDIANTES" EntityType="Self.COLA_ESTUDIANTES" Schema="USR_PROYECTO" store:Type="Tables" />
+          <EntitySet Name="ESTUDIANTES" EntityType="Self.ESTUDIANTES" Schema="USR_PROYECTO" store:Type="Tables" />
+          <EntitySet Name="INSCRIPCION_ESTUDIANTES" EntityType="Self.INSCRIPCION_ESTUDIANTES" Schema="USR_PROYECTO" store:Type="Tables" />
+          <EntitySet Name="USUARIOS" EntityType="Self.USUARIOS" Schema="USR_PROYECTO" store:Type="Tables" />
+          <AssociationSet Name="FK_CARNET" Association="Self.FK_CARNET">
+            <End Role="ESTUDIANTES" EntitySet="ESTUDIANTES" />
+            <End Role="INSCRIPCION_ESTUDIANTES" EntitySet="INSCRIPCION_ESTUDIANTES" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="COLA_ESTUDIANTES">
+          <Key>
+            <PropertyRef Name="CARNET" />
+          </Key>
+          <Property Name="CARNET" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FECHA_ADICION" Type="DateTime" />
+        </EntityType>
+        <EntityType Name="ESTUDIANTES">
+          <Key>
+            <PropertyRef Name="CARNET" />
+          </Key>
+          <Property Name="CARNET" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NOMBRE" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="FECHA_NACIMIENTO" Type="DateTime" />
+          <Property Name="FECHA_REGISTRO" Type="DateTime" />
+          <NavigationProperty Name="INSCRIPCION_ESTUDIANTES" Relationship="Model.FK_CARNET" FromRole="ESTUDIANTES" ToRole="INSCRIPCION_ESTUDIANTES" />
+        </EntityType>
+        <EntityType Name="USUARIOS">
+          <Key>
+            <PropertyRef Name="USUARIO" />
+          </Key>
+          <Property Name="USUARIO" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CONTRASENA" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="COLA_ESTUDIANTES" EntityType="Self.COLA_ESTUDIANTES" />
+          <EntitySet Name="ESTUDIANTES" EntityType="Self.ESTUDIANTES" />
+          <EntitySet Name="USUARIOS" EntityType="Self.USUARIOS" />
+          <EntitySet Name="INSCRIPCION_ESTUDIANTES" EntityType="Model.INSCRIPCION_ESTUDIANTES" />
+          <AssociationSet Name="FK_CARNET" Association="Model.FK_CARNET">
+            <End Role="ESTUDIANTES" EntitySet="ESTUDIANTES" />
+            <End Role="INSCRIPCION_ESTUDIANTES" EntitySet="INSCRIPCION_ESTUDIANTES" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="INSCRIPCION_ESTUDIANTES">
+          <Key>
+            <PropertyRef Name="CARNET" />
+            <PropertyRef Name="FECHA_ADICION" />
+          </Key>
+          <Property Name="CARNET" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="FECHA_ADICION" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="ESTUDIANTES" Relationship="Model.FK_CARNET" FromRole="INSCRIPCION_ESTUDIANTES" ToRole="ESTUDIANTES" />
+        </EntityType>
+        <Association Name="FK_CARNET">
+          <End Type="Model.ESTUDIANTES" Role="ESTUDIANTES" Multiplicity="1" />
+          <End Type="Model.INSCRIPCION_ESTUDIANTES" Role="INSCRIPCION_ESTUDIANTES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ESTUDIANTES">
+              <PropertyRef Name="CARNET" />
+            </Principal>
+            <Dependent Role="INSCRIPCION_ESTUDIANTES">
+              <PropertyRef Name="CARNET" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="Entities">
+          <EntitySetMapping Name="COLA_ESTUDIANTES">
+            <EntityTypeMapping TypeName="Model.COLA_ESTUDIANTES">
+              <MappingFragment StoreEntitySet="COLA_ESTUDIANTES">
+                <ScalarProperty Name="CARNET" ColumnName="CARNET" />
+                <ScalarProperty Name="FECHA_ADICION" ColumnName="FECHA_ADICION" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ESTUDIANTES">
+            <EntityTypeMapping TypeName="Model.ESTUDIANTES">
+              <MappingFragment StoreEntitySet="ESTUDIANTES">
+                <ScalarProperty Name="CARNET" ColumnName="CARNET" />
+                <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
+                <ScalarProperty Name="FECHA_NACIMIENTO" ColumnName="FECHA_NACIMIENTO" />
+                <ScalarProperty Name="FECHA_REGISTRO" ColumnName="FECHA_REGISTRO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="USUARIOS">
+            <EntityTypeMapping TypeName="Model.USUARIOS">
+              <MappingFragment StoreEntitySet="USUARIOS">
+                <ScalarProperty Name="USUARIO" ColumnName="USUARIO" />
+                <ScalarProperty Name="CONTRASENA" ColumnName="CONTRASENA" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="INSCRIPCION_ESTUDIANTES">
+            <EntityTypeMapping TypeName="Model.INSCRIPCION_ESTUDIANTES">
+              <MappingFragment StoreEntitySet="INSCRIPCION_ESTUDIANTES">
+                <ScalarProperty Name="FECHA_ADICION" ColumnName="FECHA_ADICION" />
+                <ScalarProperty Name="CARNET" ColumnName="CARNET" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
