@@ -1,0 +1,50 @@
+﻿@model ProyectoProgra2.Models.ESTUDIANTES
+
+@{
+   
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+</head>
+<body>
+    <div>
+        <h4>ESTUDIANTES</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.NOMBRE)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.NOMBRE)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.FECHA_NACIMIENTO)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.FECHA_NACIMIENTO)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.FECHA_REGISTRO)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.FECHA_REGISTRO)
+            </dd>
+    
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.CARNET }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</body>
+</html>
