@@ -8,9 +8,11 @@
         <EntityType Name="COLA_ESTUDIANTES">
           <Key>
             <PropertyRef Name="CARNET" />
+            <PropertyRef Name="FECHA_ADICION" />
           </Key>
           <Property Name="CARNET" Type="varchar2" MaxLength="20" Nullable="false" />
-          <Property Name="FECHA_ADICION" Type="date" />
+          <Property Name="FECHA_ADICION" Type="date" Nullable="false" />
+          <Property Name="PROCESADO" Type="number" Precision="1" Scale="0" />
         </EntityType>
         <EntityType Name="ESTUDIANTES">
           <Key>
@@ -48,6 +50,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_CARNET_COLA">
+          <End Role="ESTUDIANTES" Type="Self.ESTUDIANTES" Multiplicity="1" />
+          <End Role="COLA_ESTUDIANTES" Type="Self.COLA_ESTUDIANTES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ESTUDIANTES">
+              <PropertyRef Name="CARNET" />
+            </Principal>
+            <Dependent Role="COLA_ESTUDIANTES">
+              <PropertyRef Name="CARNET" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="ModelStoreContainer">
           <EntitySet Name="COLA_ESTUDIANTES" EntityType="Self.COLA_ESTUDIANTES" Schema="USR_PROYECTO" store:Type="Tables" />
           <EntitySet Name="ESTUDIANTES" EntityType="Self.ESTUDIANTES" Schema="USR_PROYECTO" store:Type="Tables" />
@@ -57,18 +71,15 @@
             <End Role="ESTUDIANTES" EntitySet="ESTUDIANTES" />
             <End Role="INSCRIPCION_ESTUDIANTES" EntitySet="INSCRIPCION_ESTUDIANTES" />
           </AssociationSet>
+          <AssociationSet Name="FK_CARNET_COLA" Association="Self.FK_CARNET_COLA">
+            <End Role="ESTUDIANTES" EntitySet="ESTUDIANTES" />
+            <End Role="COLA_ESTUDIANTES" EntitySet="COLA_ESTUDIANTES" />
+          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="COLA_ESTUDIANTES">
-          <Key>
-            <PropertyRef Name="CARNET" />
-          </Key>
-          <Property Name="CARNET" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="FECHA_ADICION" Type="DateTime" />
-        </EntityType>
         <EntityType Name="ESTUDIANTES">
           <Key>
             <PropertyRef Name="CARNET" />
@@ -78,6 +89,7 @@
           <Property Name="FECHA_NACIMIENTO" Type="DateTime" />
           <Property Name="FECHA_REGISTRO" Type="DateTime" />
           <NavigationProperty Name="INSCRIPCION_ESTUDIANTES" Relationship="Model.FK_CARNET" FromRole="ESTUDIANTES" ToRole="INSCRIPCION_ESTUDIANTES" />
+          <NavigationProperty Name="COLA_ESTUDIANTES" Relationship="Model.FK_CARNET_COLA" FromRole="ESTUDIANTES" ToRole="COLA_ESTUDIANTES" />
         </EntityType>
         <EntityType Name="USUARIOS">
           <Key>
@@ -87,13 +99,17 @@
           <Property Name="CONTRASENA" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="COLA_ESTUDIANTES" EntityType="Self.COLA_ESTUDIANTES" />
           <EntitySet Name="ESTUDIANTES" EntityType="Self.ESTUDIANTES" />
           <EntitySet Name="USUARIOS" EntityType="Self.USUARIOS" />
           <EntitySet Name="INSCRIPCION_ESTUDIANTES" EntityType="Model.INSCRIPCION_ESTUDIANTES" />
           <AssociationSet Name="FK_CARNET" Association="Model.FK_CARNET">
             <End Role="ESTUDIANTES" EntitySet="ESTUDIANTES" />
             <End Role="INSCRIPCION_ESTUDIANTES" EntitySet="INSCRIPCION_ESTUDIANTES" />
+          </AssociationSet>
+          <EntitySet Name="COLA_ESTUDIANTES" EntityType="Model.COLA_ESTUDIANTES" />
+          <AssociationSet Name="FK_CARNET_COLA" Association="Model.FK_CARNET_COLA">
+            <End Role="ESTUDIANTES" EntitySet="ESTUDIANTES" />
+            <End Role="COLA_ESTUDIANTES" EntitySet="COLA_ESTUDIANTES" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="INSCRIPCION_ESTUDIANTES">
@@ -117,20 +133,34 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="COLA_ESTUDIANTES">
+          <Key>
+            <PropertyRef Name="CARNET" />
+            <PropertyRef Name="FECHA_ADICION" />
+          </Key>
+          <Property Name="CARNET" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="FECHA_ADICION" Type="DateTime" Nullable="false" />
+          <Property Name="PROCESADO" Type="Boolean" />
+          <NavigationProperty Name="ESTUDIANTES" Relationship="Model.FK_CARNET_COLA" FromRole="COLA_ESTUDIANTES" ToRole="ESTUDIANTES" />
+        </EntityType>
+        <Association Name="FK_CARNET_COLA">
+          <End Type="Model.ESTUDIANTES" Role="ESTUDIANTES" Multiplicity="1" />
+          <End Type="Model.COLA_ESTUDIANTES" Role="COLA_ESTUDIANTES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ESTUDIANTES">
+              <PropertyRef Name="CARNET" />
+            </Principal>
+            <Dependent Role="COLA_ESTUDIANTES">
+              <PropertyRef Name="CARNET" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="Entities">
-          <EntitySetMapping Name="COLA_ESTUDIANTES">
-            <EntityTypeMapping TypeName="Model.COLA_ESTUDIANTES">
-              <MappingFragment StoreEntitySet="COLA_ESTUDIANTES">
-                <ScalarProperty Name="CARNET" ColumnName="CARNET" />
-                <ScalarProperty Name="FECHA_ADICION" ColumnName="FECHA_ADICION" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="ESTUDIANTES">
             <EntityTypeMapping TypeName="Model.ESTUDIANTES">
               <MappingFragment StoreEntitySet="ESTUDIANTES">
@@ -152,6 +182,15 @@
           <EntitySetMapping Name="INSCRIPCION_ESTUDIANTES">
             <EntityTypeMapping TypeName="Model.INSCRIPCION_ESTUDIANTES">
               <MappingFragment StoreEntitySet="INSCRIPCION_ESTUDIANTES">
+                <ScalarProperty Name="FECHA_ADICION" ColumnName="FECHA_ADICION" />
+                <ScalarProperty Name="CARNET" ColumnName="CARNET" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="COLA_ESTUDIANTES">
+            <EntityTypeMapping TypeName="Model.COLA_ESTUDIANTES">
+              <MappingFragment StoreEntitySet="COLA_ESTUDIANTES">
+                <ScalarProperty Name="PROCESADO" ColumnName="PROCESADO" />
                 <ScalarProperty Name="FECHA_ADICION" ColumnName="FECHA_ADICION" />
                 <ScalarProperty Name="CARNET" ColumnName="CARNET" />
               </MappingFragment>

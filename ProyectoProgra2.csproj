@@ -163,6 +163,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\COLA_ESTUDIANTESController.cs" />
     <Compile Include="Controllers\ESTUDIANTESController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\USUARIOSController.cs" />
@@ -282,6 +283,11 @@
     <Content Include="Views\ESTUDIANTES\Details.cshtml" />
     <Content Include="Views\ESTUDIANTES\Edit.cshtml" />
     <Content Include="Views\ESTUDIANTES\Index.cshtml" />
+    <Content Include="Views\COLA_ESTUDIANTES\Create.cshtml" />
+    <Content Include="Views\COLA_ESTUDIANTES\Delete.cshtml" />
+    <Content Include="Views\COLA_ESTUDIANTES\Details.cshtml" />
+    <Content Include="Views\COLA_ESTUDIANTES\Edit.cshtml" />
+    <Content Include="Views\COLA_ESTUDIANTES\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

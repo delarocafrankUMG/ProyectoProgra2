@@ -18,6 +18,7 @@ namespace ProyectoProgra2.Models
         public ESTUDIANTES()
         {
             this.INSCRIPCION_ESTUDIANTES = new HashSet<INSCRIPCION_ESTUDIANTES>();
+            this.COLA_ESTUDIANTES = new HashSet<COLA_ESTUDIANTES>();
         }
     
         public string CARNET { get; set; }
@@ -27,5 +28,7 @@ namespace ProyectoProgra2.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<INSCRIPCION_ESTUDIANTES> INSCRIPCION_ESTUDIANTES { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<COLA_ESTUDIANTES> COLA_ESTUDIANTES { get; set; }
     }
 }

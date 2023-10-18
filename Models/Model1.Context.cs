@@ -25,9 +25,9 @@ namespace ProyectoProgra2.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<COLA_ESTUDIANTES> COLA_ESTUDIANTES { get; set; }
         public virtual DbSet<ESTUDIANTES> ESTUDIANTES { get; set; }
         public virtual DbSet<USUARIOS> USUARIOS { get; set; }
         public virtual DbSet<INSCRIPCION_ESTUDIANTES> INSCRIPCION_ESTUDIANTES { get; set; }
+        public virtual DbSet<COLA_ESTUDIANTES> COLA_ESTUDIANTES { get; set; }
     }
 }

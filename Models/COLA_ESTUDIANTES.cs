@@ -15,6 +15,9 @@ namespace ProyectoProgra2.Models
     public partial class COLA_ESTUDIANTES
     {
         public string CARNET { get; set; }
-        public Nullable<System.DateTime> FECHA_ADICION { get; set; }
+        public System.DateTime FECHA_ADICION { get; set; }
+        public Nullable<bool> PROCESADO { get; set; }
+    
+        public virtual ESTUDIANTES ESTUDIANTES { get; set; }
     }
 }

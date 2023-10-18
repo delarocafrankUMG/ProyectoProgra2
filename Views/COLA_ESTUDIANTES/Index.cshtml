@@ -1,0 +1,39 @@
+﻿@model IEnumerable<ProyectoProgra2.Models.COLA_ESTUDIANTES>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.PROCESADO)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ESTUDIANTES.NOMBRE)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.PROCESADO)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ESTUDIANTES.NOMBRE)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>
+    </tr>
+}
+
+</table>
