@@ -17,7 +17,19 @@
         <dd>
             @Html.DisplayFor(model => model.PROCESADO)
         </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.FECHA_ADICION)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.FECHA_ADICION)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ESTUDIANTES.CARNET)
+        </dt>
 
+        <dd>
+            @Html.DisplayFor(model => model.ESTUDIANTES.CARNET)
+        </dd>
         <dt>
             @Html.DisplayNameFor(model => model.ESTUDIANTES.NOMBRE)
         </dt>
@@ -26,9 +38,17 @@
             @Html.DisplayFor(model => model.ESTUDIANTES.NOMBRE)
         </dd>
 
+        <dt>
+            @Html.DisplayNameFor(model => model.ESTUDIANTES.FECHA_REGISTRO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ESTUDIANTES.FECHA_REGISTRO)
+        </dd>
+
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Edit", "Edit",  new { CARNET = Model.ESTUDIANTES.CARNET, FECHA_ADICION = Model.FECHA_ADICION.ToString("dd/MM/yyyy") }) |
     @Html.ActionLink("Back to List", "Index")
 </p>

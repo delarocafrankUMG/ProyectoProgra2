@@ -41,9 +41,9 @@
                 @Html.DisplayFor(modelItem => item.FECHA_REGISTRO)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id=item.CARNET }) |
-                @Html.ActionLink("Details", "Details", new { id=item.CARNET }) |
-                @Html.ActionLink("Delete", "Delete", new { id=item.CARNET })
+                @Html.ActionLink("Edit", "Edit", new { CARNET = item.CARNET}) |
+                @Html.ActionLink("Details", "Details", new { CARNET = item.CARNET })  |
+                @Html.ActionLink("Delete", "Delete", new { CARNET = item.CARNET })
             </td>
         </tr>
     }

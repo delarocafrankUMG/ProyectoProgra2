@@ -3,31 +3,66 @@
 }
 
 <main>
-    <section class="row" aria-labelledby="aspnetTitle">
-        <h1 id="title">ASP.NET</h1>
-        <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-        <p><a href="https://asp.net" class="btn btn-primary btn-md">Learn more &raquo;</a></p>
-    </section>
+    <div class="jumbotron">
+        <h1>Bienvenido a Inscripciones</h1>
+        <p>
+            <a href="@Url.Action("About", "Home")" class="btn btn-primary btn-lg">Acerca de nosotros</a>
+            <a href="@Url.Action("Contact", "Home")" class="btn btn-default btn-lg">Contáctanos</a>
+        </p>
+    </div>
 
     <div class="row">
-        <section class="col-md-4" aria-labelledby="gettingStartedTitle">
-            <h2 id="gettingStartedTitle">Getting started</h2>
+        <div class="col-md-4">
+            <h2>Características</h2>
             <p>
-                ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-                enables a clean separation of concerns and gives you full control over markup
-                for enjoyable, agile development.
+                El proyecto de curso está basado en la creación de un sitio web para el manejo de asignaciones de estudiantes. Se debe de gestionar la asignación de usuarios permitidos para acceder a la aplicación y que deben almacenarse en una base de datos Oracle, construida para esta finalidad.
             </p>
-            <p><a class="btn btn-outline-dark" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-        </section>
-        <section class="col-md-4" aria-labelledby="librariesTitle">
-            <h2 id="librariesTitle">Get more libraries</h2>
-            <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-            <p><a class="btn btn-outline-dark" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-        </section>
-        <section class="col-md-4" aria-labelledby="hostingTitle">
-            <h2 id="hostingTitle">Web Hosting</h2>
-            <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-            <p><a class="btn btn-outline-dark" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-        </section>
+        </div>
+       
+        <div class="col-md-8">
+            <h2>Cómo Comenzar</h2>
+            <p>Bienvenido al Sistema de Asignación de Estudiantes. Para comenzar a utilizar la aplicación y aprovechar todas sus funcionalidades, sigue estos sencillos pasos:</p>
+
+            <h3>Paso 1: Inicia Sesión</h3>
+            <ol>
+                <li>Accede a la página de inicio.</li>
+                <li>Ingresa tu nombre de usuario y contraseña.</li>
+                <li>Haz clic en el botón "Iniciar Sesión."</li>
+            </ol>
+
+            <h3>Paso 2: Regístrate como Usuario</h3>
+            <ol>
+                <li>Si aún no tienes una cuenta de usuario, puedes registrar una nueva.</li>
+                <li>Selecciona la opción "Registrar un usuario nuevo" en el menú de Usuarios.</li>
+                <li>Ingresa un nombre de usuario y una contraseña.</li>
+                <li>Completa el proceso de registro.</li>
+            </ol>
+
+            <h3>Paso 3: Registra Estudiantes Nuevos</h3>
+            <ol>
+                <li>Si eres un administrador o un usuario autorizado, puedes registrar estudiantes nuevos en la aplicación.</li>
+                <li>Selecciona la opción "Registrar un estudiante nuevo" en el menú de Estudiantes.</li>
+                <li>Ingresa los detalles del estudiante, incluyendo carnet, nombre y fecha de nacimiento.</li>
+                <li>Guarda la información.</li>
+            </ol>
+
+            <h3>Paso 4: Agrega Estudiantes a la Cola de Inscripción</h3>
+            <ol>
+                <li>Para inscribir estudiantes en la aplicación, primero debes agregarlos a la cola de inscripción.</li>
+                <li>Selecciona la opción "Cola Estudiantes"</li>
+                <li>Elige un estudiante de la lista y agrégalo a la cola de inscripción.</li>
+            </ol>
+
+            <h3>Paso 5: Realiza Inscripciones</h3>
+            <ol>
+                <li>Conforme se atiendan estudiantes para inscribirlos, podrás realizar inscripciones.</li>
+                <li>Selecciona la opción "Inscripcion estudiantes."</li>
+                <li>Selecciona al estudiante.</li>
+                <li>Agrégalo a la lista de estudiantes inscritos.</li>
+            </ol>
+
+            <p>Listo, ahora estás listo para aprovechar al máximo todas las funcionalidades de la aplicación. Si necesitas ayuda adicional, no dudes en contactar al administrador o el equipo de soporte.</p>
+
+        </div>
     </div>
 </main>

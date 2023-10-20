@@ -2,6 +2,7 @@
 
 @{
     ViewBag.Title = "Index";
+
 }
 
 <h2>Index</h2>
@@ -15,8 +16,16 @@
             @Html.DisplayNameFor(model => model.PROCESADO)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ESTUDIANTES.NOMBRE)
+            @Html.DisplayNameFor(model => model.ESTUDIANTES.CARNET)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ESTUDIANTES.NOMBRE)
+        </th>        
+        <th>
+            @Html.DisplayNameFor(model => model.FECHA_ADICION)
+        </th>
+
+
         <th></th>
     </tr>
 
@@ -26,12 +35,19 @@
             @Html.DisplayFor(modelItem => item.PROCESADO)
         </td>
         <td>
+            @Html.DisplayFor(modelItem => item.ESTUDIANTES.CARNET)
+        </td>
+        <td>
             @Html.DisplayFor(modelItem => item.ESTUDIANTES.NOMBRE)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            @Html.DisplayFor(modelItem => item.FECHA_ADICION)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { CARNET = item.ESTUDIANTES.CARNET, FECHA_ADICION = item.FECHA_ADICION }) |
+            @Html.ActionLink("Details", "Details", new { CARNET = item.ESTUDIANTES.CARNET, FECHA_ADICION = item.FECHA_ADICION }) |
+            @Html.ActionLink("Delete", "Delete", new { CARNET = item.ESTUDIANTES.CARNET, FECHA_ADICION = item.FECHA_ADICION })
+
         </td>
     </tr>
 }

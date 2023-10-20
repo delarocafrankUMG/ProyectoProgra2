@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
+using System.Web.UI;
 using ProyectoProgra2.Models;
 
 namespace ProyectoProgra2.Controllers
@@ -15,12 +18,14 @@ namespace ProyectoProgra2.Controllers
         private Entities db = new Entities();
 
         // GET: USUARIOS
+        [Authorize][OutputCache(NoStore = true, Location = OutputCacheLocation.None)]
         public ActionResult Index()
         {
             return View(db.USUARIOS.ToList());
         }
 
         // GET: USUARIOS/Details/5
+        [Authorize][OutputCache(NoStore = true, Location = OutputCacheLocation.None)]
         public ActionResult Details(string id)
         {
             if (id == null)
@@ -36,6 +41,7 @@ namespace ProyectoProgra2.Controllers
         }
 
         // GET: USUARIOS/Create
+        [Authorize][OutputCache(NoStore = true, Location = OutputCacheLocation.None)]
         public ActionResult Create()
         {
             return View();
@@ -44,6 +50,7 @@ namespace ProyectoProgra2.Controllers
         // POST: USUARIOS/Create
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que quiere enlazarse. Para obtener 
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize][OutputCache(NoStore = true, Location = OutputCacheLocation.None)]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "USUARIO,CONTRASENA")] USUARIOS uSUARIOS)
@@ -59,6 +66,7 @@ namespace ProyectoProgra2.Controllers
         }
 
         // GET: USUARIOS/Edit/5
+        [Authorize][OutputCache(NoStore = true, Location = OutputCacheLocation.None)]
         public ActionResult Edit(string id)
         {
             if (id == null)
@@ -76,6 +84,7 @@ namespace ProyectoProgra2.Controllers
         // POST: USUARIOS/Edit/5
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que quiere enlazarse. Para obtener 
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize][OutputCache(NoStore = true, Location = OutputCacheLocation.None)]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "USUARIO,CONTRASENA")] USUARIOS uSUARIOS)
@@ -90,6 +99,7 @@ namespace ProyectoProgra2.Controllers
         }
 
         // GET: USUARIOS/Delete/5
+        [Authorize][OutputCache(NoStore = true, Location = OutputCacheLocation.None)]
         public ActionResult Delete(string id)
         {
             if (id == null)
@@ -105,6 +115,7 @@ namespace ProyectoProgra2.Controllers
         }
 
         // POST: USUARIOS/Delete/5
+        [Authorize][OutputCache(NoStore = true, Location = OutputCacheLocation.None)]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(string id)
@@ -123,5 +134,6 @@ namespace ProyectoProgra2.Controllers
             }
             base.Dispose(disposing);
         }
+
     }
 }

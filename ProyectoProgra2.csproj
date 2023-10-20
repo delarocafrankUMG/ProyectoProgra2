@@ -166,6 +166,8 @@
     <Compile Include="Controllers\COLA_ESTUDIANTESController.cs" />
     <Compile Include="Controllers\ESTUDIANTESController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\INSCRIPCION_ESTUDIANTESController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\USUARIOSController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -288,9 +290,17 @@
     <Content Include="Views\COLA_ESTUDIANTES\Details.cshtml" />
     <Content Include="Views\COLA_ESTUDIANTES\Edit.cshtml" />
     <Content Include="Views\COLA_ESTUDIANTES\Index.cshtml" />
+    <Content Include="Views\Login\Index.cshtml" />
+    <Content Include="Views\INSCRIPCION_ESTUDIANTES\Create.cshtml" />
+    <Content Include="Views\INSCRIPCION_ESTUDIANTES\Delete.cshtml" />
+    <Content Include="Views\INSCRIPCION_ESTUDIANTES\Details.cshtml" />
+    <Content Include="Views\INSCRIPCION_ESTUDIANTES\Edit.cshtml" />
+    <Content Include="Views\INSCRIPCION_ESTUDIANTES\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Account\" />
+    <Folder Include="Views\COLA_ESTUDIANTES1\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />
