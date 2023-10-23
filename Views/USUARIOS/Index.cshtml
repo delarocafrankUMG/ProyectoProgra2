@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<ProyectoProgra2.Models.USUARIOS>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Usuarios";
 }
 
 <h2>Index</h2>
@@ -23,9 +23,9 @@
             @Html.DisplayFor(modelItem => item.USUARIO)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.USUARIO }) |
-            @Html.ActionLink("Details", "Details", new { id=item.USUARIO }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.USUARIO })
+           @* @Html.ActionLink("Edit", "Edit", new { id=item.USUARIO }) | *@
+            @Html.ActionLink("Detalles", "Details", new { id=item.USUARIO }) |
+           @* @Html.ActionLink("Delete", "Delete", new { id=item.USUARIO }) *@
         </td>
     </tr>
 }
