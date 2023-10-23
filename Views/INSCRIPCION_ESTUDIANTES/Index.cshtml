@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<ProyectoProgra2.Models.INSCRIPCION_ESTUDIANTES>
 
 @{
-
+ViewBag.Title = "Index";
 }
 
 <!DOCTYPE html>
@@ -30,8 +30,8 @@
             </td>
             <td>
                 @*@Html.ActionLink("Edit", "Edit", new {  CARNET=item.CARNET, FECHA_ADICION = item.FECHA_ADICION }) |*@
-                @Html.ActionLink("Details", "Details", new { CARNET = item.CARNET, FECHA_ADICION = item.FECHA_ADICION }) |
-                @Html.ActionLink("Delete", "Delete", new { CARNET = item.CARNET, FECHA_ADICION = item.FECHA_ADICION })
+                @Html.ActionLink("Detalles", "Details", new { CARNET = item.CARNET, FECHA_ADICION = item.FECHA_ADICION }) |
+              @*  @Html.ActionLink("Delete", "Delete", new { CARNET = item.CARNET, FECHA_ADICION = item.FECHA_ADICION })*@
             </td>
         </tr>
     }
