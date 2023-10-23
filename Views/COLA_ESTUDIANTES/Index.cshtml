@@ -5,10 +5,10 @@
 
 }
 
-<h2>Index</h2>
+<h2>Cola de Estudiantes</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Crear Nuevo", "Create")
 </p>
 <table class="table">
     <tr>
@@ -44,9 +44,9 @@
             @Html.DisplayFor(modelItem => item.FECHA_ADICION)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { CARNET = item.ESTUDIANTES.CARNET, FECHA_ADICION = item.FECHA_ADICION }) |
-            @Html.ActionLink("Details", "Details", new { CARNET = item.ESTUDIANTES.CARNET, FECHA_ADICION = item.FECHA_ADICION }) |
-            @Html.ActionLink("Delete", "Delete", new { CARNET = item.ESTUDIANTES.CARNET, FECHA_ADICION = item.FECHA_ADICION })
+           @* @Html.ActionLink("Edit", "Edit", new { CARNET = item.ESTUDIANTES.CARNET, FECHA_ADICION = item.FECHA_ADICION }) |*@
+            @Html.ActionLink("Detalles", "Details", new { CARNET = item.ESTUDIANTES.CARNET, FECHA_ADICION = item.FECHA_ADICION }) |
+          @*  @Html.ActionLink("Delete", "Delete", new { CARNET = item.ESTUDIANTES.CARNET, FECHA_ADICION = item.FECHA_ADICION })*@
 
         </td>
     </tr>
