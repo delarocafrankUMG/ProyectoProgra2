@@ -9,11 +9,11 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
+    <title>Estudiantes</title>
 </head>
 <body>
     <p>
-        @Html.ActionLink("Create New", "Create")
+        @Html.ActionLink("Crear Nuevo", "Create")
     </p>
     <table class="table">
         <tr>
@@ -41,9 +41,9 @@
                 @Html.DisplayFor(modelItem => item.FECHA_REGISTRO)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { CARNET = item.CARNET}) |
-                @Html.ActionLink("Details", "Details", new { CARNET = item.CARNET })  |
-                @Html.ActionLink("Delete", "Delete", new { CARNET = item.CARNET })
+                @* @Html.ActionLink("Edit", "Edit", new { CARNET = item.CARNET}) |*@
+                @Html.ActionLink("Details", "Detalles", new { CARNET = item.CARNET })  |
+             @*   @Html.ActionLink("Delete", "Delete", new { CARNET = item.CARNET }) *@
             </td>
         </tr>
     }
