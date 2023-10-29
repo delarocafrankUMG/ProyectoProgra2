@@ -21,7 +21,7 @@ namespace ProyectoProgra2.Controllers
         [OutputCache(NoStore = true, Location = OutputCacheLocation.None)]
         public ActionResult Index()
         {
-            var iNSCRIPCION_ESTUDIANTES = db.INSCRIPCION_ESTUDIANTES.Include(i => i.ESTUDIANTES);
+            var iNSCRIPCION_ESTUDIANTES = db.INSCRIPCION_ESTUDIANTES.Include(i => i.ESTUDIANTES).OrderBy(e => e.FECHA_ADICION);
             return View(iNSCRIPCION_ESTUDIANTES.ToList());
         }
 
@@ -48,15 +48,25 @@ namespace ProyectoProgra2.Controllers
         public ActionResult Create()
         {
             var carnetsEstudiantesNoProcesados = db.COLA_ESTUDIANTES
-                 .Where(e => e.PROCESADO == false)
-                 .Select(e => e.CARNET)
-                 .ToList();
+                                        .Where(e => e.PROCESADO == false)
+                                        .OrderBy(e => e.FECHA_ADICION)
+                                        .FirstOrDefault();
+            if(carnetsEstudiantesNoProcesados != null)
+            {
+                var estudiantes = db.ESTUDIANTES
+                    .Where(estudiante => estudiante.CARNET == carnetsEstudiantesNoProcesados.CARNET)
+                    .ToList() ?? new List<ESTUDIANTES>();
+                    ViewBag.CARNET = new SelectList(estudiantes, "CARNET", "NOMBRE");
+            }
+            else
+            {
+                var estudiantes = new List<ESTUDIANTES>();
+                ViewBag.CARNET = new SelectList(estudiantes, "CARNET", "NOMBRE");
+            }
 
-            var estudiantes = db.ESTUDIANTES
-                .Where(estudiante => carnetsEstudiantesNoProcesados.Contains(estudiante.CARNET))
-                .ToList();
 
-            ViewBag.CARNET = new SelectList(estudiantes, "CARNET", "NOMBRE");
+
+           
 
             return View();
         }
@@ -73,7 +83,10 @@ namespace ProyectoProgra2.Controllers
             if (ModelState.IsValid)
             {
                 var carnet = iNSCRIPCION_ESTUDIANTES.CARNET;
-                var estudianteEnCola = db.COLA_ESTUDIANTES.FirstOrDefault(e => e.CARNET == carnet && e.PROCESADO == false);
+                var estudianteEnCola = db.COLA_ESTUDIANTES
+                                        .Where(e => e.PROCESADO == false)
+                                        .OrderBy(e => e.FECHA_ADICION)
+                                        .FirstOrDefault();
 
                 if (estudianteEnCola != null)
                 {
